@@ -24,6 +24,14 @@ def showUsers():
 	return render_template('users.html',user=user)
 
 
+
+@app.route('/user/<int:users_id>')
+def historyUser(users_id):
+	#return 'main page'
+	return render_template('historyuser.html')
+
+
+
 @app.route('/donors/')
 def showDonors():
 	#return 'main page'

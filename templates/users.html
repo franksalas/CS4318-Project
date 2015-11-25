@@ -1,8 +1,17 @@
 <h1>Users Page</h1>
 <a href="{{url_for('main')}}" > <h3>home</h3></a>
 
+
+<table>
 {% for i in user %}
-
-<p>{{ i.name }}</p>
-
-{% endfor %}
+<tr>
+	<th>Name</th>
+</tr>
+<tr>
+	<td>
+		<p>{{ i.name }}</p>	
+	</td>
+	<td><a href="{{url_for('historyUser', users_id=i.id)}}" > <h3>home</h3></a></td>	
+</tr>
+{% endfor %}	
+</table>
