@@ -1,2 +1,8 @@
 <h1>Storage Page</h1>
 <a href="{{url_for('main')}}" > <h3>home</h3></a>
+
+{% for i in storage %}
+
+<p>{{ i.location }}</p>
+
+{% endfor %}

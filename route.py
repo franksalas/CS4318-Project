@@ -20,27 +20,31 @@ def main():
 @app.route('/users/')
 def showUsers():
 	#return 'main page'
-	return render_template('users.html')
+	user = session.query(Users).all()
+	return render_template('users.html',user=user)
 
 
 @app.route('/donors/')
 def showDonors():
 	#return 'main page'
-	return render_template('donors.html')
+	donor = session.query(Donors).all()
+	return render_template('donors.html',donor=donor)
 
 
 
 @app.route('/products/')
 def showProducts():
 	#return 'main page'
-	return render_template('products.html')
+	product = session.query(Products).all()
+	return render_template('products.html',product=product)
 
 
 
 @app.route('/storage/')
 def showStorage():
 	#return 'main page'
-	return render_template('storage.html')
+	storage = session.query(Storage).all()
+	return render_template('storage.html',storage=storage)
 
 
 

@@ -1,2 +1,8 @@
 <h1>Users Page</h1>
 <a href="{{url_for('main')}}" > <h3>home</h3></a>
+
+{% for i in user %}
+
+<p>{{ i.name }}</p>
+
+{% endfor %}
