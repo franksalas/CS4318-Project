@@ -2,12 +2,26 @@
 {% block content %}
 
 <h1>Donors Page</h1>
-<a href="{{url_for('main')}}" > <h3>home</h3></a>
 
-{% for i in donor %}
-
-<p>{{ i.first_name }}</p>
-
-{% endfor %} 
-
-{% endblock %}
+<div class="table-responsive"> 
+<table class="table table-no-border ">
+	
+<thead>
+  <tr>
+    <th class='col-sm-2'></th>
+    <th class='col-sm-2'></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  {% for i in donor %}
+  <tr>
+  	<td class="text-left">{{ i.first_name }} {{ i.last_name }}</td>
+  	<td class="text-left" ><a href="" class="btn btn-primary btn-sm ">donation history</a></td>
+    <td class="text-left" ><a href="" class="btn btn-primary btn-sm ">edit donor</a></td> 
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>
+</div>
+{% endblock %}	

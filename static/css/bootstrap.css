@@ -6797,4 +6797,13 @@ button.close {
     display: none !important;
   }
 }
+
+.table-no-border>thead>tr>th, 
+.table-no-border>tbody>tr>th, 
+.table-no-border>tfoot>tr>th, 
+.table-no-border>thead>tr>td, 
+.table-no-border>tbody>tr>td, 
+.table-no-border>tfoot>tr>td {
+  border-top: none; 
+}
 /*# sourceMappingURL=bootstrap.css.map */

@@ -3,12 +3,30 @@
  
 
 <h1>Products Page</h1>
-<a href="{{url_for('main')}}" > <h3>home</h3> </a>
 
-{% for i in product %}
+<div> 
+<table class="table table-no-border">
+	
+<thead >
+  <tr>
+    <th class='col-sm-2'>Donor ID</th>
+    <th class='col-sm-2'>Product Code</th>
+    <th class='col-sm-1'>Type</th>
+    <th class='col-sm-1'>Exp Date</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  {% for i in product %}
+  <tr>
+  	<td>{{ i.bcode }}</td>
+  	<td>{{ i.product_code }}</td>
+  	<td>{{ i.type }}</td>
+  	<td>{{ i.exp_date }}</td>
+  	<td><a href="{{url_for('historyProduct', products_id=i.id)}}" class="btn  btn-primary btn-sm">History</a></td>
 
-<p>{{ i.bcode }}</p>
-
-{% endfor %}
-
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>
 {% endblock %}

@@ -15,7 +15,7 @@ session = DBSession()
 def main():
 	#return 'main page'
 	return render_template('main.html')
-	
+
 
 @app.route('/users/')
 def showUsers():
@@ -29,6 +29,8 @@ def showUsers():
 def historyUser(users_id):
 	#return 'main page'
 	return render_template('historyuser.html')
+
+
 
 
 
@@ -47,6 +49,11 @@ def showProducts():
 	return render_template('products.html',product=product)
 
 
+@app.route('/products/<int:products_id>')
+def historyProduct(products_id):
+	#return 'main page'
+	return render_template('historyproducts.html')
+
 
 @app.route('/storage/')
 def showStorage():
@@ -59,7 +66,3 @@ def showStorage():
 if __name__ == '__main__':
 
 	app.run(debug=True)
-
-# {% extends "base.html" %}
-# {% block content %}
-#  {% endblock %}

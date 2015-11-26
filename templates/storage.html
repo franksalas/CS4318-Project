@@ -3,19 +3,19 @@
 
 <h1>Storage Page</h1>
 <div class="table-responsive"> 
-<table class="table ">
+<table class="table table-no-border ">
 	
 <thead>
   <tr>
-    <th class='col-sm-1'>Location</th>
-    <th class='col-sm-1'>Edit</th> 
+    <th class='col-sm-1'></th>
+    <th ></th> 
   </tr>
 </thead>
 <tbody>
   {% for i in storage %}
   <tr>
   	<td class="text-left" >{{ i.location }}</td>
-    <td class="text-left" ><a href="" class="btn btn-primary ">edit</a></td> 
+    <td class="text-left" ><a href="" class="btn btn-primary btn-sm">edit</a></td> 
     {% endfor %}
   </tr>
   </tbody>

@@ -1,22 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Users Page</h1>
-<a href="{{url_for('main')}}" > <h3>home</h3></a>
+<h1>User Page</h1>
+<div> 
+<table class="table table-no-border">
+	
+<thead >
+  <tr>
+    <th class='col-sm-1'></th>
+    <th></th> 
+  </tr>
+</thead>
+<tbody>
+  {% for i in user %}
+  <tr>
+  	<td>{{ i.name }} </td>
+  	<td><a href="{{url_for('historyUser', users_id=i.id)}}" class="btn  btn-primary btn-sm">edit</a></td>
 
-
-<table>
-{% for i in user %}
-<tr>
-	<th>Name</th>
-</tr>
-<tr>
-	<td>
-		<p>{{ i.name }}</p>	
-	</td>
-	<td><a href="{{url_for('historyUser', users_id=i.id)}}" > <h3>home</h3></a></td>	
-</tr>
-{% endfor %}	
-</table> 
-
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>
 {% endblock %}
+
