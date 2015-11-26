@@ -39,7 +39,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/frank/Desktop/DatabaseProject/Finalproject/env"
+VIRTUAL_ENV="/home/FrankSalas/Github/CS4318-Project/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

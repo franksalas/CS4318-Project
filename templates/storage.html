@@ -1,8 +1,31 @@
-<h1>Storage Page</h1>
-<a href="{{url_for('main')}}" > <h3>home</h3></a>
+{% extends "base.html" %}
+{% block content %}
 
-{% for i in storage %}
+<h1>Storage Page</h1>
+<div class="table-responsive"> 
+<table class="table ">
+	
+<thead>
+  <tr>
+    <th class='col-sm-1'>Location</th>
+    <th class='col-sm-1'>Edit</th> 
+  </tr>
+</thead>
+<tbody>
+  {% for i in storage %}
+  <tr>
+  	<td class="text-left" >{{ i.location }}</td>
+    <td class="text-left" ><a href="" class="btn btn-primary ">edit</a></td> 
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- {% for i in storage %}
 
 <p>{{ i.location }}</p>
 
-{% endfor %}
+{% endfor %} 
+
+{% endblock %}	 -->

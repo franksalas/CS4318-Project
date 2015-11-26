@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+
 <h1>Products Page</h1>
 <a href="{{url_for('main')}}" > <h3>home</h3> </a>
 
@@ -6,3 +10,5 @@
 <p>{{ i.bcode }}</p>
 
 {% endfor %}
+
+{% endblock %}

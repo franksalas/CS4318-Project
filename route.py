@@ -59,3 +59,7 @@ def showStorage():
 if __name__ == '__main__':
 
 	app.run(debug=True)
+
+# {% extends "base.html" %}
+# {% block content %}
+#  {% endblock %}
