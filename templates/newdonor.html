@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block content %}
+
+<h1> New Donor</h1>
+<form action="{{url_for('newDonors', users_id=users_id )}}" method = 'POST'>
+<p>FirstName:</p>
+<input type='text' size='30' name='name'>
+<p>LastName:</p>
+<input type='text' size='30' name='last'>
+<p>address:</p>
+<input type='text' size='30' name='address'>
+<p>dob:</p>
+<input type='text' size='10' name='dob'>
+
+<input type='submit' value='Create'>
+
+</form>
+{%endblock%}

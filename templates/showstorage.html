@@ -2,4 +2,32 @@
 {% block content %}
 <h1>{{currentstorage.location}}</h1>
 
+
+
+<div> 
+<table class="table table-no-border">
+	
+<thead >
+  <tr>
+    <th class='col-sm-2'>Donor ID</th>
+    <th class='col-sm-2'>Product Code</th>
+    <th class='col-sm-1'>Type</th>
+    <th class='col-sm-1'>Exp Date</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  {% for i in products %}
+  <tr>
+  	<td>{{ i.bcode }}</td>
+  	<td>{{ i.product_code }}</td>
+  	<td>{{ i.type }}</td>
+  	<td>{{ i.exp_date }}</td>
+  	<td></td>
+
+    {% endfor %}
+  </tr>
+  </tbody>
+</table>
+
 {% endblock %}	
