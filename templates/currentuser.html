@@ -9,7 +9,7 @@
 	
 <thead >
   <tr>
-    <th class='col-sm-2'>NAME</th>
+    <th class='col-sm-2'>Donor Name</th>
     <th></th>
   </tr>
 </thead>
@@ -17,6 +17,7 @@
   {% for i in donors %}
   <tr>
   	<td><p>{{i.first_name}} {{i.last_name}}</p></td>
+  	<td><a href="{{url_for('historyDonors', donors_id=i.id)}}" class="btn  btn-primary btn-sm">View Products</a></td>
   	<td><a href="{{url_for('addProduct', donors_id=i.id)}}" class="btn  btn-primary btn-sm">Add Product</a></td>
   	
     {% endfor %}

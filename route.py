@@ -29,10 +29,35 @@ def historyUser(users_id):
 	return render_template('currentuser.html',currentuser=currentuser, donors=donors)
 
 
+@app.route('/user/new/', methods=['GET','POST'])
+def newUser():
+	if request.method == 'POST':
+		newuser = Users(name=request.form['name'])	
+		session.add(newuser)
+		session.commit()
+		return redirect(url_for('showUsers'))
+	else:
+		return render_template('newuser.html')
+
+
+
 @app.route('/donors/')
 def showDonors():
 	donor = session.query(Donors).all()
 	return render_template('donors.html',donor=donor)
+
+
+@app.route('/donors/<int:donors_id>/profile')
+def profileDonors(donors_id):
+	currentdonor = session.query(Donors).filter_by(id=donors_id).one()	
+	return render_template('profiledonor.html',currentdonor=currentdonor)
+
+
+@app.route('/donors/<int:donors_id>')
+def historyDonors(donors_id):
+	currentdonor = session.query(Donors).filter_by(id=donors_id).one()
+	products = session.query(Products).filter_by(donors_id=donors_id)
+	return render_template('currentdonor.html',currentdonor=currentdonor, products=products)
 
 
 @app.route('/donors/new/<int:users_id>/', methods=['GET','POST'])
@@ -56,6 +81,7 @@ def newDonors(users_id):
 @app.route('/products/')
 def showProducts():
 	product = session.query(Products).all()
+	
 	return render_template('products.html',product=product)
 
 
@@ -66,10 +92,25 @@ def historyProduct(products_id):
 	return render_template('historyproducts.html')
 
 
-@app.route('/donor/<int:donors_id>/product/new/')
+@app.route('/donor/<int:donors_id>/product/new/', methods=['GET', 'POST'])
 def addProduct(donors_id):
 	currentdonor = session.query(Donors).filter_by(id=donors_id).one()
-	return render_template('addproduct.html', currentdonor=currentdonor)
+	if request.method == 'POST':
+		newProduct = Products(
+			bcode=request.form['bcode'],
+			product_code=request.form['product_code'],
+			type=request.form['type'],
+			exp_date=request.form['exp_date'],
+			donors_id=donors_id,
+			storage_id=1)
+		session.add(newProduct)
+		session.commit()
+		return redirect(url_for('historyDonors', donors_id=donors_id))
+	else:
+		return render_template('addproduct.html',currentdonor=currentdonor, donors_id=donors_id)
+
+
+
 
 
 @app.route('/storage/')
@@ -83,6 +124,14 @@ def stockStorage(storage_id):
 	currentstorage = session.query(Storage).filter_by(id=storage_id).one()
 	products = session.query(Products).filter_by(storage_id=storage_id)
 	return render_template('showstorage.html', currentstorage=currentstorage, products=products)
+
+
+@app.route('/storage/stock/move/<int:storage_id>/')
+def moveStorage(storage_id):
+	currentstorage = session.query(Storage).filter_by(id=storage_id).one()
+	products = session.query(Products).filter_by(storage_id=storage_id)
+	return render_template('movestorage.html', currentstorage=currentstorage, products=products)
+
 
 
 

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{currentdonor.first_name}} {{currentdonor.first_name}}</h1>
+
+<div> 
+<table class="table table-no-border">
+	
+<thead >
+  <tr>
+    <th class='col-sm-2'>Address</th>
+    <th class='col-sm-2'>Date of Birth</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+
+  <tr>
+  	<td>{{ currentdonor.address }}</td>
+  	<td>{{ currentdonor.dob }}</td>
+
+  </tr>
+  </tbody>
+</table>
+
+
+
+{% endblock %}
