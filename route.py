@@ -21,16 +21,17 @@ def main():
 def showUsers():
 	#return 'main page'
 	user = session.query(Users).all()
-	return render_template('users.html',user=user)
+
+	return render_template('users.html', user=user)
 
 
 
-@app.route('/user/<int:users_id>')
+@app.route('/user/<int:users_id>/')
 def historyUser(users_id):
 	#return 'main page'
-	return render_template('historyuser.html')
-
-
+	currentuser = session.query(Users).filter_by(id=users_id).one()
+	donors = session.query(Donors).filter_by(users_id=users_id)
+	return render_template('currentuser.html',currentuser=currentuser, donors=donors)
 
 
 
@@ -49,10 +50,11 @@ def showProducts():
 	return render_template('products.html',product=product)
 
 
-@app.route('/products/<int:products_id>')
-def historyProduct(products_id):
-	#return 'main page'
-	return render_template('historyproducts.html')
+# @app.route('/products/<int:products_id>')
+# def historyProduct(products_id):
+# 	#return 'main page'
+# 	#product = session.query(Products).all()
+# 	return render_template('historyproducts.html')
 
 
 @app.route('/storage/')
@@ -60,6 +62,13 @@ def showStorage():
 	#return 'main page'
 	storage = session.query(Storage).all()
 	return render_template('storage.html',storage=storage)
+
+
+@app.route('/storage/stock/<int:storage_id>/')
+def stockStorage(storage_id):
+	currentstorage = session.query(Storage).filter_by(id=storage_id).one()
+	# return render_template('showstorage.html',currentstorage=currentstorage)
+	return render_template('showstorage.html', currentstorage=currentstorage)
 
 
 
