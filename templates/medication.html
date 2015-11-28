@@ -7,16 +7,18 @@
 	
 <thead>
   <tr>
-    <th class='col-sm-1'></th>
-    <th ></th> 
+    <th class='col-sm-1'>Medication</th>
+    <th >Side effects</th>
+    <th >Donor</th> 
   </tr>
 </thead>
 <tbody>
   {% for i in medication %}
   <tr>
-  	<td class="text-left" >{{ i.name }}</td>
-    <td class="text-left">
-    <a href="" class="btn  btn-primary btn-sm">edit</a>
+  	<td> {{ i.name }}</td>
+    <td> {{ i.sideffects }}</td>
+    <td> {{ i.donors.first_name }} {{ i.donors.last_name }}</td>
+    <td><a href="" class="btn  btn-primary btn-sm">edit</a>
     </td> 
     {% endfor %}
   </tr>

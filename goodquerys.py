@@ -1,0 +1,1 @@
+count = session.query(func.count('*')).select_from(Donors).filter_by(users_id=users_id).scalar()

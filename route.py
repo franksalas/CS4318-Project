@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Users, Donors, Products, Storage
+from database_setup import Base, Users, Donors, Products, Medication
 app = Flask(__name__)
 
 
@@ -13,7 +13,11 @@ session = DBSession()
 
 @app.route('/')
 def main():
-	return render_template('main.html')
+	countusers = session.query(func.count(Users.id)).scalar()
+	countdonors = session.query(func.count(Donors.id)).scalar()
+	countproducts = session.query(func.count(Products.id)).scalar()
+	countmedication = session.query(func.count(Medication.id)).scalar()
+	return render_template('main.html',countdonors=countdonors,countusers=countusers,countproducts=countproducts,countmedication=countmedication)
 
 
 @app.route('/users/')
@@ -26,7 +30,12 @@ def showUsers():
 def historyUser(users_id):
 	currentuser = session.query(Users).filter_by(id=users_id).one()
 	donors = session.query(Donors).filter_by(users_id=users_id)
-	return render_template('currentuser.html',currentuser=currentuser, donors=donors)
+	# count = session.query(Donors).filter_by(users_id=users_id).scalar()
+	# count = session.query(func.count(Donors.id)).scalar() GIVES ALL DONORS
+	#count = session.query(Products).filter_by(donors_id=donors_id)
+	count = session.query(func.count('*')).select_from(Products).scalar()
+
+	return render_template('currentuser.html',currentuser=currentuser, donors=donors,count=count)
 
 
 @app.route('/user/new/', methods=['GET','POST'])
@@ -101,8 +110,8 @@ def addProduct(donors_id):
 			product_code=request.form['product_code'],
 			type=request.form['type'],
 			exp_date=request.form['exp_date'],
-			donors_id=donors_id,
-			storage_id=1)
+			donors_id=donors_id
+			)
 		session.add(newProduct)
 		session.commit()
 		return redirect(url_for('historyDonors', donors_id=donors_id))
@@ -113,24 +122,25 @@ def addProduct(donors_id):
 
 
 
-@app.route('/storage/')
-def showStorage():
-	storage = session.query(Storage).all()
-	return render_template('storage.html',storage=storage)
+@app.route('/medication/')
+def showMedication():
+	medication = session.query(Medication).all()
+	return render_template('medication.html',medication=medication)
 
 
-@app.route('/storage/stock/<int:storage_id>/')
-def stockStorage(storage_id):
-	currentstorage = session.query(Storage).filter_by(id=storage_id).one()
-	products = session.query(Products).filter_by(storage_id=storage_id)
-	return render_template('showstorage.html', currentstorage=currentstorage, products=products)
+@app.route('/medication/<int:donors_id>/')
+def donorMedication(donors_id):
+	#medication = session.query(Medication).all()
+	currentmedication = session.query(Medication).filter_by(id=donors_id).one()
+	# products = session.query(Products).filter_by(storage_id=storage_id)
+	return render_template('donormedication.html',currentmedication=currentmedication)
 
 
-@app.route('/storage/stock/move/<int:storage_id>/')
-def moveStorage(storage_id):
-	currentstorage = session.query(Storage).filter_by(id=storage_id).one()
-	products = session.query(Products).filter_by(storage_id=storage_id)
-	return render_template('movestorage.html', currentstorage=currentstorage, products=products)
+# @app.route('/medication/<int:donors_id>/new')
+# def addMedication(donors_id):
+# 	current = session.query(Storage).filter_by(id=storage_id).one()
+# 	products = session.query(Products).filter_by(storage_id=storage_id)
+# 	return render_template('movestorage.html', currentstorage=currentstorage, products=products)
 
 
 

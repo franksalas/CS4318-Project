@@ -18,6 +18,9 @@
   	<td>{{ currentdonor.address }}</td>
   	<td>{{ currentdonor.dob }}</td>
 
+   <td> <a href="{{url_for('donorMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">show medication</a></td>
+
+
   </tr>
   </tbody>
 </table>

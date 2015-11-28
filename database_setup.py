@@ -1,11 +1,17 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine, Table
+from sqlalchemy.orm import relationship, backref
+from sqlalchemy import create_engine
 
 Base = declarative_base()
+
+
+# products_storage = Table('products_storage', Base.metadata,
+#     Column('products_id', Integer, ForeignKey('products.id')),
+#     Column('storage_id', Integer, ForeignKey('storage.id'))
+# )
 
 
 class Users(Base):
@@ -13,6 +19,12 @@ class Users(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
+
+# def __init__(self, name):
+#               self.name = name
+
+# def __repr__(self):
+#         return "<Users('%s')>" % (self.name)
 
 
 class Donors (Base):
@@ -26,16 +38,22 @@ class Donors (Base):
     users_id = Column(Integer, ForeignKey('users.id'))
     users = relationship(Users)
 
-class Storage (Base):
-    __tablename__ = 'storage'
+# def __init__(self, first_name, last_name,address, dob, users):
+#               self.name = name
+#               self.last_name
+
+# def __repr__(self):
+#         return "<Users('%s')>" % (self.name)d
+
+
+class Medication(Base):
+    __tablename__ = 'medication'
+
     id = Column(Integer, primary_key=True)
-    location = Column(String(20))
-
-
-products_storage = Table('products_storage', Base.metadata,
-    Column('products_id', Integer, ForeignKey('products.id')),
-    Column('storage_id', Integer, ForeignKey('storage.id'))
-)
+    name = Column(String(50), nullable=False)
+    sideffects = Column(String(200), nullable=False)
+    donors_id = Column(Integer, ForeignKey('donors.id'))
+    donors = relationship(Donors, backref="medication")
 
 
 class Products (Base):
@@ -49,9 +67,8 @@ class Products (Base):
     exp_date = Column(String(10))
     donors_id = Column(Integer, ForeignKey('donors.id'))
     donors = relationship(Donors)
-    storage_id = Column(Integer, ForeignKey('storage.id'))
-    storage = relationship(Storage, secondary=products_storage)
-
+    # storage_id = Column(Integer, ForeignKey('storage.id'))
+    # storage = relationship("Storage", backref='products', secondary=products_storage)
 
 
 engine = create_engine('sqlite:///newBlood.db')

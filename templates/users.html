@@ -15,7 +15,7 @@
   {% for i in user %}
   <tr>
   	<td>{{ i.name }} </td>
-  	<td><a href="{{url_for('historyUser', users_id=i.id)}}" class="btn  btn-primary btn-sm">edit</a></td>
+  	<td><a href="{{url_for('historyUser', users_id=i.id)}}" class="btn  btn-primary btn-sm">Login</a></td>
     {% endfor %}
 
     {% for i in donors %}
