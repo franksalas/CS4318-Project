@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {%block content %}
 <div class="container">
-<h1>{{currentdonor.first_name}} {{currentdonor.last_name}}</h1><a href="{{url_for('addProduct', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Add Product</a>
+
+<div>
+<a href="{{url_for('profileDonors',donors_id=currentdonor.id)}}">
+<H1>{{currentdonor.first_name}} {{currentdonor.last_name}}</H1>
+</a>
 </div>
 
-<div> 
+</div>
+<br>
+
+<div class="container">
+
 <table class="table table-no-border">
   
 <thead >
@@ -23,11 +31,12 @@
     <td>{{ i.product_code }}</td>
     <td>{{ i.type }}</td>
     <td>{{ i.exp_date }}</td>
-    <td><a href="" class="btn  btn-primary btn-sm">History</a></td>
+    <td></td>
 
     {% endfor %}
   </tr>
   </tbody>
 </table>
 
+</div>
 {%endblock%}
