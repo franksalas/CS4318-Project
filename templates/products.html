@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
- 
+ <div class="container">
 <h1>Products Page</h1>
+</div>
+<br>
 
 <div> 
 <table class="table table-no-border">
 	
 <thead >
   <tr>
-    <th class='col-sm-2'>Donor ID</th>
+    <th class='col-sm-3'>Donor ID</th>
     <th class='col-sm-2'>Product Code</th>
-    <th class='col-sm-1'>Type</th>
-    <th class='col-sm-1'>Exp Date</th>
-    <th class='col-sm-1'>Location</th>
-    <th></th>
+    <th class='col-sm-2'>Type</th>
+    <th class='col-sm-2'>Exp Date</th>
+    <th class='col-sm-3'>Donor Name</th>
   </tr>
 </thead>
 <tbody>
@@ -23,13 +24,10 @@
   	<td>{{ i.product_code }}</td>
   	<td>{{ i.type }}</td>
   	<td>{{ i.exp_date }}</td>
-    {% for p in currentstorage %}
+    <td>{{ i.donors.first_name}} {{ i.donors.last_name}}</td>
 
-    <td>{{ p.location }}</td>
-    {% endfor %}
-  	<td><a href="{{url_for('historyProduct', products_id=i.id)}}" class="btn  btn-primary btn-sm">History</a></td>
+  {% endfor %}
 
-    {% endfor %}
   </tr>
   </tbody>
 </table>

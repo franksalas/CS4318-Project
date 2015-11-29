@@ -8,51 +8,40 @@
 </div>
 <br>
 <div>
-
+<div class="col-sm-12">
 <table class="table table-no-border">
 
 
-
-
-<div class="row">
-   <div class="col-md-9"> 
-<table class="table table-no-border">
-
-<thead>
   <tr>
-    <th class="col-md-1">Options</th>
-    <th class="col-md-1">Total</th>
-    <th class="col-md-3">View</th> 
-  </tr>
-</thead>
-<tbody>
-  <tr>
-  	<td><h4>Users</h4></td>
-  	<td>{{countusers}}</td>
-  	<td><a href="{{url_for('showUsers')}}" class="btn  btn-primary btn-sm">Show User</a></td>
-  </tr>
-
-  <tr>
-  	<td><h4>Donors</h4></td>
-  	<td>{{countdonors}}</td>
-  	<td><a href="{{url_for('showDonors')}}" class="btn  btn-primary btn-md">Show Donors  </a></td>
   	
+  	<td class='col-sm-3' ><a href="{{url_for('showUsers')}}" class="btn  btn-primary btn-md">Show Users</a></td>
+    <td class='col-sm-3'><h4>Total Users:</h4></td>
+    <td class='col-sm-6' ><h4>{{countusers}}</h4></td>
   </tr>
 
   <tr>
-  	<td><h4>Products<h4></td>
-  	<td>{{countproducts}}</td>
-  	<td><a href="{{url_for('showProducts')}}" class="btn  btn-primary btn-md">Show Products</a></td>
+    
+    <td class='col-sm-3'><a href="{{url_for('showDonors')}}" class="btn  btn-primary btn-md">Show Donors</a></td>
+    <td class='col-sm-3'><h4>Total Donors:</h4></td>
+    <td class='col-sm-3'><h4>{{countdonors}}</h4></td>
   </tr>
 
-  <tr>
-  	<td><h4>Medication<h4></td>
-  	<td>{{countmedication}}</td>
-  	<td><a href="{{url_for('showMedication')}}" class="btn  btn-primary btn-md">Show Medication</a></td>
-  	
+  <tr >
+    
+    <td class='col-sm-3'><a href="{{url_for('showProducts')}}" class="btn  btn-primary btn-md">Show Products</a></td>
+    <td class='col-sm-3'><h4>Total Products:</h4></td>
+    <td class='col-sm-3'><h4>{{countproducts}}</h4></td>
   </tr>
-  </tbody>
+
+  <tr >
+    
+    <td class='col-sm-3'><a href="{{url_for('showMedication')}}" class="btn  btn-primary btn-md">Show Medication</a></td>
+    <td class='col-sm-3'><h4>Total Medication:</h4></td>
+    <td class='col-sm-3'><h4>{{countmedication}}</h4></td>
+  </tr>
+
 </table>
+</div>
 </div>
 </div>
 
