@@ -1,18 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>{{currentdonor.first_name}} {{currentdonor.last_name}}</h1><a href="{{url_for('profileDonors', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm"> Back to Profile</a>
+<div class="container">
 
-<div> 
-<table class="table table-no-border">
-	
+<div>
+<a href="{{url_for('profileDonors',donors_id=currentdonor.id)}}">
+<H1>{{currentdonor.first_name}} {{currentdonor.last_name}}</H1>
+</a>
+</div>
+
+</div>
+<br>
+<div class="container">
+
+<table class="table table-bordered">	
 <thead >
   <tr>
-    <th>Medication</th>
-    <th>Side Effects</th> 
+    <th class="col-md-1">Medication</th>
+    <th class="col-sm-8">Side Effects</th> 
   </tr>
 </thead>
 <tbody>
+
 {% for i in currentmedication %}
   <tr>
   	<td>{{i.name}} </td>
@@ -21,5 +30,8 @@
   </tr>
   </tbody>
 </table>
+</div>
+
+
 
 {% endblock %}

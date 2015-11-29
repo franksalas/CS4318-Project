@@ -6,35 +6,19 @@
 <h1>{{currentdonor.first_name}} {{currentdonor.last_name}}</h1>
 
 </div>
+<br>
 <div> 
 <table class="table table-no-border">
 	
-<thead >
-  <tr>
-    <th class='col-sm-2'>Address</th>
-    <th class='col-sm-2'>Date of Birth</th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
 
   <tr>
-  	<td>{{ currentdonor.address }}</td>
-  	<td>{{ currentdonor.dob }}</td>
-    <td><a href="{{url_for('addProduct', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Add Product</a></td>
-
-    <td><a href="{{url_for('addMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">add medication</a></td>
-
-   <td><a href="{{url_for('historyDonors',donors_id=currentdonor.id)}}" class="btn btn-primary btn-sm ">Donation History</a></td>
-   <td></td>
-
-   <td><a href="{{url_for('donorMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Medication History</a></td>
-
-
-
-
+    <th class='col-sm-1'><a href="{{url_for('infoDonors', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Donor Info</a></th>
+    <th class='col-sm-1'><a href="{{url_for('addProduct', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Add Product</a></th>
+    <th class='col-sm-1'><a href="{{url_for('addMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Add medication</a></th>
+    <th class='col-sm-1'><a href="{{url_for('historyDonors',donors_id=currentdonor.id)}}" class="btn btn-primary btn-sm ">Donation History</a></td>
+   <td class='col-sm-1'><a href="{{url_for('donorMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Medication History</a> </th>
   </tr>
-  </tbody>
+
 </table>
 
 

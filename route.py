@@ -56,10 +56,17 @@ def showDonors():
 	return render_template('donors.html',donor=donor)
 
 
-@app.route('/donors/profile/<int:donors_id>')
+@app.route('/donors/profile/<int:donors_id>/')
 def profileDonors(donors_id):
 	currentdonor = session.query(Donors).filter_by(id=donors_id).one()	
 	return render_template('profiledonor.html',currentdonor=currentdonor)
+
+
+@app.route('/donors/info/<int:donors_id>/')
+def infoDonors(donors_id):
+	currentdonor = session.query(Donors).filter_by(id=donors_id).one()	
+	return render_template('infodonor.html',currentdonor=currentdonor)
+
 
 
 @app.route('/donors/<int:donors_id>')
