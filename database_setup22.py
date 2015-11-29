@@ -67,9 +67,6 @@ class Products (Base):
     exp_date = Column(String(10))
     donors_id = Column(Integer, ForeignKey('donors.id'))
     donors = relationship(Donors)
-    # storage_id = Column(Integer, ForeignKey('storage.id'))
-    # storage = relationship("Storage", backref='products', secondary=products_storage)
-
 
 engine = create_engine('sqlite:///newBlood.db')
 

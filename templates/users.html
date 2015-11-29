@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="container">
+
 <h1>User Page</h1><a href="{{url_for('newUser')}}" class="btn  btn-primary btn-sm">New User</a>
+</div>
+<br>
 <div> 
+
 <table class="table table-no-border">
 	
 <thead >
@@ -15,7 +20,7 @@
   {% for i in user %}
   <tr>
   	<td>{{ i.name }} </td>
-  	<td><a href="{{url_for('historyUser', users_id=i.id)}}" class="btn  btn-primary btn-sm">edit</a></td>
+  	<td><a href="{{url_for('historyUser', users_id=i.id)}}" class="btn  btn-primary btn-sm">Login</a></td>
     {% endfor %}
 
     {% for i in donors %}
