@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h1>{{currentdonor.first_name}} {{currentdonor.last_name}}</h1><a href="{{url_for('profileDonors', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm"> Back to Profile</a>
 
-<h1>Medication for {{currentmedication.donors.first_name}} {{currentmedication.donors.last_name}} </h1>
 <div> 
 <table class="table table-no-border">
 	
@@ -13,19 +13,13 @@
   </tr>
 </thead>
 <tbody>
-
+{% for i in currentmedication %}
   <tr>
-  	<td>{{currentmedication.name}} </td>
-  	<td>{{currentmedication.sideffects}}</td>
-  	
-
-    
+  	<td>{{i.name}} </td>
+  	<td>{{i.sideffects}}</td>
+  	{% endfor %}   
   </tr>
   </tbody>
 </table>
-
-
-
-
 
 {% endblock %}

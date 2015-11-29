@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{currentdonor.first_name}} {{currentdonor.first_name}}</h1>
 
+<div class="container">
+
+<h1>{{currentdonor.first_name}} {{currentdonor.last_name}}</h1>
+
+</div>
 <div> 
 <table class="table table-no-border">
 	
@@ -17,8 +21,16 @@
   <tr>
   	<td>{{ currentdonor.address }}</td>
   	<td>{{ currentdonor.dob }}</td>
+    <td><a href="{{url_for('addProduct', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Add Product</a></td>
 
-   <td> <a href="{{url_for('donorMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">show medication</a></td>
+    <td><a href="{{url_for('addMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">add medication</a></td>
+
+   <td><a href="{{url_for('historyDonors',donors_id=currentdonor.id)}}" class="btn btn-primary btn-sm ">Donation History</a></td>
+   <td></td>
+
+   <td><a href="{{url_for('donorMedication', donors_id=currentdonor.id)}}" class="btn  btn-primary btn-sm">Medication History</a></td>
+
+
 
 
   </tr>

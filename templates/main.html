@@ -1,43 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
-
-   <div class="container"> 
+<div class="row">
+   <div class="col-md-9"> 
 <table class="table table-no-border">
 
-
+<h1>MainPage</h1>
 <thead>
   <tr>
-    <th>Options</th>
-    <th></th>
-    <th>View</th> 
+    <th class="col-md-1">Options</th>
+    <th class="col-md-1">Total</th>
+    <th class="col-md-3">View</th> 
   </tr>
 </thead>
 <tbody>
   <tr>
-  	<td>Users</td>
-  	<td><a href="{{url_for('showUsers')}}" class="btn  btn-primary btn-sm">Show User</a></td>
+  	<td><h4>Users</h4></td>
   	<td>{{countusers}}</td>
+  	<td><a href="{{url_for('showUsers')}}" class="btn  btn-primary btn-sm">Show User</a></td>
   </tr>
 
   <tr>
-  	<td>Donors</td>
-  	<td><a href="{{url_for('showDonors')}}" class="btn  btn-primary btn-md">Show Donors  </a></td>
+  	<td><h4>Donors</h4></td>
   	<td>{{countdonors}}</td>
+  	<td><a href="{{url_for('showDonors')}}" class="btn  btn-primary btn-md">Show Donors  </a></td>
+  	
   </tr>
 
   <tr>
-  	<td>Products</td>
-  	<td><a href="{{url_for('showProducts')}}" class="btn  btn-primary btn-md">Show Products</a></td>
+  	<td><h4>Products<h4></td>
   	<td>{{countproducts}}</td>
+  	<td><a href="{{url_for('showProducts')}}" class="btn  btn-primary btn-md">Show Products</a></td>
   </tr>
 
   <tr>
-  	<td>Medication</td>
-  	<td><a href="{{url_for('showMedication')}}" class="btn  btn-primary btn-md">Show Medication</a></td>
+  	<td><h4>Medication<h4></td>
   	<td>{{countmedication}}</td>
+  	<td><a href="{{url_for('showMedication')}}" class="btn  btn-primary btn-md">Show Medication</a></td>
+  	
   </tr>
   </tbody>
 </table>
+</div>
 </div>
 
  {% endblock %}

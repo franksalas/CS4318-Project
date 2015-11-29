@@ -56,7 +56,7 @@ def showDonors():
 	return render_template('donors.html',donor=donor)
 
 
-@app.route('/donors/<int:donors_id>/profile')
+@app.route('/donors/profile/<int:donors_id>')
 def profileDonors(donors_id):
 	currentdonor = session.query(Donors).filter_by(id=donors_id).one()	
 	return render_template('profiledonor.html',currentdonor=currentdonor)
@@ -90,8 +90,17 @@ def newDonors(users_id):
 @app.route('/products/')
 def showProducts():
 	product = session.query(Products).all()
-	
 	return render_template('products.html',product=product)
+
+
+# @app.route('/products/donors/<int:donors_id>/')
+# def historyProduct(donors_id):
+# 	currentdonor = session.query(Donors).filter_by(id=donors_id).one()
+
+# 	#return 'main page'
+# 	#product = session.query(Products).all()
+# 	return render_template('historyproducts.html',currentdonor=currentdonor)
+
 
 
 @app.route('/products/<int:products_id>')
@@ -131,16 +140,30 @@ def showMedication():
 @app.route('/medication/<int:donors_id>/')
 def donorMedication(donors_id):
 	#medication = session.query(Medication).all()
-	currentmedication = session.query(Medication).filter_by(id=donors_id).one()
+	currentdonor = session.query(Donors).filter_by(id=donors_id).one()
+	currentmedication = session.query(Medication).filter_by(donors_id=donors_id)
+	return render_template('donormedication.html',currentdonor=currentdonor,currentmedication=currentmedication)
+
+
+@app.route('/medication/<int:donors_id>/new', methods=['GET', 'POST'])
+def addMedication(donors_id):
+	currentdonor = session.query(Donors).filter_by(id=donors_id).one()
+	if request.method == 'POST':
+		newmedication = Medication(
+			name=request.form['name'],
+			sideffects=request.form['sideffects'],
+			donors_id=donors_id
+			)
+		session.add(newmedication)
+		session.commit()
+		return redirect(url_for('donorMedication', donors_id=donors_id))
+	else:
+		return render_template('addmedication.html',currentdonor=currentdonor, donors_id=donors_id)
+
+
+
 	# products = session.query(Products).filter_by(storage_id=storage_id)
-	return render_template('donormedication.html',currentmedication=currentmedication)
-
-
-# @app.route('/medication/<int:donors_id>/new')
-# def addMedication(donors_id):
-# 	current = session.query(Storage).filter_by(id=storage_id).one()
-# 	products = session.query(Products).filter_by(storage_id=storage_id)
-# 	return render_template('movestorage.html', currentstorage=currentstorage, products=products)
+	# return render_template('movestorage.html', currentstorage=currentstorage, products=products)
 
 
 
