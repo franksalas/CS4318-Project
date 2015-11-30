@@ -186,9 +186,22 @@ def addMedication(donors_id):
 		return render_template('addmedication.html',currentdonor=currentdonor, donors_id=donors_id)
 
 
+######## delete from database area ######
 
-	# products = session.query(Products).filter_by(storage_id=storage_id)
-	# return render_template('movestorage.html', currentstorage=currentstorage, products=products)
+# DELETE MENU ITEM SOLUTION
+
+@app.route('/medication/<int:donors_id>/<int:medication_id>/',methods=['GET', 'POST'])
+def deleteMedication(donors_id,medication_id):
+	
+
+    medtodelete = session.query(Medication).filter_by(id=medication_id).one()
+    currentdonor = session.query(Donors).filter_by(id=donors_id).one()
+    if request.method == 'POST':
+        session.delete(medtodelete)
+        session.commit()
+        return redirect(url_for('donorMedication',donors_id=donors_id))
+    else:
+      return render_template('deletemedication.html', medtodelete=medtodelete,currentdonor=currentdonor)
 
 
 

@@ -11,8 +11,6 @@
 </div>
 <br>
 
-
-
 <form id="articleForm" method="post" class="form-horizontal">
     <div class="form-group">
         <label class="col-xs-3 control-label">Medication</label>
@@ -48,7 +46,6 @@ $(document).ready(function() {
         },
         fields: {
             name: {
-                trigger: 'keyup',
                 validators: {
                     notEmpty: {
                         message: 'Medication name is required'
@@ -56,7 +53,6 @@ $(document).ready(function() {
                 }
             },
             sideffects: {
-                trigger: 'blur',
                 validators: {
                     notEmpty: {
                         message: 'sideffects are required'

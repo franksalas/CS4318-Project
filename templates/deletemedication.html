@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{%block content %}
+
+<div class="container">
+
+<div>
+
+<h1> Are you sure you want to delete {{medtodelete.name}}? </h1>
+
+<form action="{{ url_for('deleteMedication', medication_id=medtodelete.id, donors_id=currentdonor.id)}}" method = 'post'>
+
+<input type='submit', value = 'Delete'>
+
+
+
+
+
+
+{%endblock%}

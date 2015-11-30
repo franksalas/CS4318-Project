@@ -53,7 +53,7 @@ class Medication(Base):
     name = Column(String(50), nullable=False)
     sideffects = Column(String(200), nullable=False)
     donors_id = Column(Integer, ForeignKey('donors.id'))
-    donors = relationship(Donors, backref="medication")
+    donors = relationship(Donors)
 
 
 class Products (Base):
