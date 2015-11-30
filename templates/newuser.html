@@ -1,17 +1,63 @@
 {% extends "base.html" %}
 {%block content %}
 
+ <div class="container">
 
-<h1>New User</h1>
+<div>
 
-<form action="#" method = 'post'>
+<H1>New User</H1>
+</div>
 
+</div>
+<br>
+<!-- <script>
 
-	<p>Name:</p>
-		<input type ='text' size='30' name='name'>
+	if (typeof jQuery != 'undefined') {  
+    // jQuery is loaded => print the version
+    alert(jQuery.fn.jquery);
+}
 
+</script> -->
 
-<input type='submit' value='Create'>
+<form method = 'post' id="signinForm" class="form-inline">
+    <div class="form-group" style="width: 40%;">
+        <input type="text" class="form-control" name="name" placeholder="Username" style="width: 100%;" />
+    </div>
 
+    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+    <button type="submit" class="btn btn-default">Sign in</button>
 </form>
+
+<script>
+$(document).ready(function() {
+    $('#signinForm').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'The username can only consist of alphabetical, number and underscore'
+                    }
+                }
+            },
+
+        }
+    });
+});
+</script>
+
 {%endblock%}

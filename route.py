@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Users, Donors, Products, Medication
+
+
 app = Flask(__name__)
 
 
@@ -11,6 +13,9 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+
+
+
 @app.route('/')
 def main():
 	countusers = session.query(func.count(Users.id)).scalar()
@@ -18,6 +23,7 @@ def main():
 	countproducts = session.query(func.count(Products.id)).scalar()
 	countmedication = session.query(func.count(Medication.id)).scalar()
 	return render_template('main.html',countdonors=countdonors,countusers=countusers,countproducts=countproducts,countmedication=countmedication)
+	
 
 
 @app.route('/users/')
@@ -38,6 +44,16 @@ def historyUser(users_id):
 	return render_template('currentuser.html',currentuser=currentuser, donors=donors,count=count)
 
 
+# @app.route('/user/new/', methods=['GET','POST'])
+# def newUser():
+# 	if request.method == 'POST':
+# 		newuser = Users(name=request.form['name'])	
+# 		session.add(newuser)
+# 		session.commit()
+# 		return redirect(url_for('showUsers'))
+# 	else:
+# 		return render_template('newuser.html')
+
 @app.route('/user/new/', methods=['GET','POST'])
 def newUser():
 	if request.method == 'POST':
@@ -47,6 +63,8 @@ def newUser():
 		return redirect(url_for('showUsers'))
 	else:
 		return render_template('newuser.html')
+
+
 
 
 
