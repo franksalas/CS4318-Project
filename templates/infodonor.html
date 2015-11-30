@@ -1,7 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 
-<p>info donor</p>
+<div class="container">
+
+<h1>Donor Info</h1>
+
+</div>
+<br>
+
+<div class="container">
+
+
+<div class="row">
+ <div class="col-xs-6 col-md-2"><h2 class="text-right">First Name:</h2></div>
+ <div class="col-xs-12 col-md-10"><h2 class="text-left" >{{ currentdonor.first_name }}</h2></div>
+</div>
+
+<div class="row">
+ <div class="col-xs-6 col-md-2"><h2 class="text-right">Last Name:</h2></div>
+ <div class="col-xs-12 col-md-10"><h2 class="text-left" >{{ currentdonor.last_name }}</h2></div>
+</div>
+
+<div class="row">
+ <div class="col-xs-6 col-md-2"><h2 class="text-right">Address:</h2></div>
+ <div class="col-xs-12 col-md-10"><h2 class="text-left" >{{ currentdonor.address}}</h2></div>
+</div>
+
+<div class="row">
+ <div class="col-xs-6 col-md-2"><h2 class="text-right">DOB:</h2></div>
+ <div class="col-xs-12 col-md-10"><h2 class="text-left" >{{ currentdonor.dob }}</h2></div>
+</div>
+</div>
 
 
 {% endblock %}

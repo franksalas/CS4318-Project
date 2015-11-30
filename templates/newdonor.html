@@ -1,18 +1,100 @@
 {% extends "base.html" %}
 {%block content %}
+ <div class="container">
 
-<h1> New Donor</h1>
-<form action="{{url_for('newDonors', users_id=users_id )}}" method = 'POST'>
-<p>FirstName:</p>
-<input type='text' size='30' name='name'>
-<p>LastName:</p>
-<input type='text' size='30' name='last'>
-<p>address:</p>
-<input type='text' size='30' name='address'>
-<p>dob:</p>
-<input type='text' size='10' name='dob'>
+<div>
 
-<input type='submit' value='Create'>
+<H1>New Donor</H1>
+</div>
 
+</div>
+<br>
+
+<form method = 'POST' id="registrationForm" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Full name</label>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" name="name" placeholder="First name" />
+        </div>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" name="last" placeholder="Last name" />
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
+        <label class="col-xs-3 control-label">address</label>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" name="address" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Date of birth</label>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" name="dob" placeholder="MM/DD/YY" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-9 col-xs-offset-3">
+            <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Submit</button>
+        </div>
+    </div>
 </form>
+
+<script>
+$(document).ready(function() {
+    $('#registrationForm').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            name: {
+                row: '.col-xs-4',
+                validators: {
+                    notEmpty: {
+                        message: 'The first name is required'
+                    }
+                }
+            },
+            last: {
+                row: '.col-xs-4',
+                validators: {
+                    notEmpty: {
+                        message: 'The last name is required'
+                    }
+                }
+            },
+
+            address: {
+                validators: {
+                    notEmpty: {
+                        message: 'An address is required'
+                    }
+
+                }
+            },
+
+
+            dob: {
+                validators: {
+                    notEmpty: {
+                        message: 'The date of birth is required'
+                    },
+                    date: {
+                        format: 'MM/DD/YYYY',
+                        message: 'The date of birth is not valid'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
 {%endblock%}
