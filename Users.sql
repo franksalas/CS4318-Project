@@ -1,10 +1,3 @@
-DROP TABLE `Users`;
-
-CREATE TABLE `Users` (
-  `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  `name` varchar(255) default NULL,
-  PRIMARY KEY (`id`)
-) AUTO_INCREMENT=1;
 
 INSERT INTO `Users` (`name`) VALUES ("Nadine"),("Wilma"),("Callum"),("Talon"),("Bianca"),("Savannah"),("Kristen"),("Julie"),("Matthew"),("Lucian");
 INSERT INTO `Users` (`name`) VALUES ("Yoko"),("Walter"),("Calvin"),("Moana"),("Jack"),("Quinn"),("Castor"),("Lucy"),("Lilah"),("Clare");
