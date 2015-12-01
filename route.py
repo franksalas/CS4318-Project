@@ -192,8 +192,6 @@ def addMedication(donors_id):
 
 @app.route('/medication/<int:donors_id>/<int:medication_id>/',methods=['GET', 'POST'])
 def deleteMedication(donors_id,medication_id):
-	
-
     medtodelete = session.query(Medication).filter_by(id=medication_id).one()
     currentdonor = session.query(Donors).filter_by(id=donors_id).one()
     if request.method == 'POST':
@@ -204,6 +202,16 @@ def deleteMedication(donors_id,medication_id):
       return render_template('deletemedication.html', medtodelete=medtodelete,currentdonor=currentdonor)
 
 
+# @app.route('/product/<int:donors_id>/<int:products_id>/',methods=['GET', 'POST'])
+# def deleteProduct(donors_id,product_id):
+#     productodelete = session.query(Products).filter_by(id=product_id).one()
+#     currentdonor = session.query(Donors).filter_by(id=donors_id).one()
+#     if request.method == 'POST':
+#         session.delete(productodelete)
+#         session.commit()
+#         return redirect(url_for('donorMedication',donors_id=donors_id))
+#     else:
+#       return render_template('deletemedication.html', medtodelete=medtodelete, currentdonor=currentdonor)
 
 
 if __name__ == '__main__':
